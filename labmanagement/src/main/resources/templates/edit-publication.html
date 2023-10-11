@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Publication</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Edit Publication</h1>
+        <form th:action="@{/publications/{id}/edit(id=${publication.id})}" method="post">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" th:value="${publication.title}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="publicationDate">Publication Date</label>
+                <input type="date" class="form-control" id="publicationDate" name="publicationDate" th:value="${#dates.format(publication.publicationDate, 'yyyy-MM-dd')}" required>
+            </div>
+            <div class="form-group">
+                <label>Authors (Members):</label>
+                <select multiple="multiple" name="selectedMembers" class="form-control">
+                    <option th:each="member : ${members}"
+                            th:value="${member.id}"
+                            th:text="${member.firstName + ' ' + member.lastName}"></option>
+                </select>
+            </div>        
+            <div class="form-group">
+                <label>Additional Authors (Not Members):</label>
+                <input type="text" name="additionalAuthors" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="project">Project</label>
+                <select class="form-control" id="project" name="project.id">
+                    <option th:each="project : ${projects}" th:value="${project.id}" th:text="${project.title}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

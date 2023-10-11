@@ -1,0 +1,104 @@
+
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 100px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #4da1fa;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    font-weight: bold;
+    color: #515151;
+}
+
+.form-control {
+    width: 85%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 0 auto; 
+}
+
+
+.btn-primary {
+    background-color: #4da1fa;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+.alert {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.bemember {
+    text-decoration: none;
+    color: #007BFF;
+    padding: 1%;
+}

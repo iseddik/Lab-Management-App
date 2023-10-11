@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI LAB Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" href="/css/dashboard.css">
+</head>
+
+<body>
+
+
+    <h1>Welcome to AI LAB!</h1>
+
+    <nav>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/projects/list}">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/members/list}">Members</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/publications/list}">Publications</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:href="@{/resources/list}">Resources</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">LogOut</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="dashboard-card-container">
+        <a href="/admin/projects" th:href="@{/projects/list}"  class="dashboard-card">
+            <div>
+                <h2>Projects</h2>
+                <p>You can find research projects here.</p>
+            </div>
+        </a>
+
+        <a href="/admin/members" th:href="@{/members/list}" class="dashboard-card">
+            <div>
+                <h2>Members</h2>
+                <p>You can find laboratory members here.</p>
+            </div>
+        </a>
+
+        <a href="/admin/publications" th:href="@{/publications/list}" class="dashboard-card">
+            <div>
+                <h2>Publications</h2>
+                <p>You can find research publications here.</p>
+            </div>
+        </a>
+
+        <a href="/admin/resources" class="dashboard-card" th:href="@{/resources/list}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+            <div>
+                <h2>Resources</h2>
+                <p>You can find laboratory resources here.</p>
+            </div>
+        </a>
+    </div>
+    <script src="/static/js/script.js"></script>
+</body>
+
+</html>

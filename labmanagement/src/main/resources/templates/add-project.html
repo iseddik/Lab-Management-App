@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Add Project</h2>
+    <form th:action="@{/projects/add}" method="post">
+        <div class="form-group">
+            <label>Title:</label>
+            <input type="text" name="title" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <textarea name="description" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Start Date:</label>
+            <input type="date" name="startDate" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>End Date:</label>
+            <input type="date" name="endDate" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Authors (Members):</label>
+            <select multiple="multiple" name="selectedMembers" class="form-control">
+                <option th:each="member : ${members}"
+                        th:value="${member.id}"
+                        th:text="${member.firstName + ' ' + member.lastName}"></option>
+            </select>
+        </div>        
+        <div class="form-group">
+            <label>Additional Authors (Not Members):</label>
+            <input type="text" name="additionalAuthors" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-success">Add</button>
+        <a th:href="@{/projects}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

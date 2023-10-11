@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Publication List</title>
+    <link rel="stylesheet" th:href="@{/css/list-projects.css}" href="/css/list-projects.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h2>AI LAB - Publications</h2>
+
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/projects/list}"  href="/page2">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/members/list}">Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/publications/list}">Publications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:href="@{/resources/list}">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}">LogOut</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div><a th:href="@{/publications/add}" th:if="${#authorization.expression('hasAnyRole(''ADMIN'', ''TEACHER'')')}"  class="btn btn-success">Add New Publication</a></div>
+        <div th:each="publication : ${publications}" class="project-item">
+            <div class="project-header">
+                <h3 th:text="${publication.title}"></h3>
+                <p class="project-dates">
+                    Publication Date: <span th:text="${#dates.format(publication.publicationDate, 'yyyy-MM-dd')}"></span>
+                </p>
+                <p class="project-dates">
+                    Conference: <span th:text="${publication.conference}"></span>
+                </p>
+            </div>
+            <p class="project-description">Project-related : <span th:text="${publication.project.title}"></p>
+            <p class="project-authors">
+                <span>Authors </span>
+                <span th:each="author, iterStat : ${publication.authors}">
+                    <span th:text="${author.firstName + ' ' + author.lastName}"></span>
+                    <span th:unless="${iterStat.last}">, </span>
+                </span><span>,</span>
+                <span th:each="additionalAuthor, iterStat : ${publication.additionalAuthors}">
+                    <span th:text="${additionalAuthor}"></span>
+                    <span th:unless="${iterStat.last}">, </span>
+                </span>
+            </p>
+            </p>
+            <div class="project-actions">
+                <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:href="@{/publications/edit/{id}(id=${publication.id})}" class="btn btn-primary btn-sm">Edit</a>
+                <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"  th:href="@{/publications/delete/{id}(id=${publication.id})}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
